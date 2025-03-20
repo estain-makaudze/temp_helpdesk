@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="Helpdesk" id="qis_internal_helpdesk_root_menu"/>
+        <menuitem name="Configuration" id="qis_internal_helpdesk_configuration" parent="qis_internal_helpdesk_root_menu" sequence="30" />
+    </data>
+</odoo>

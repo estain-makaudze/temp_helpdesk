@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="qis_internal_helpdesk_department_model_list_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.department_model.list</field>
+            <field name="model">qis_internal_helpdesk.department_model</field>
+            <field name="arch" type="xml">
+                <list string="Department"  sample="1">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_department_model_act_window" model="ir.actions.act_window">
+            <field name="name">Department</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qis_internal_helpdesk.department_model</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Experience effortless management of Department.
+                </p>
+                <p>
+                    Click 'New' to add a new record and streamline your workflow.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Department" id="qis_internal_helpdesk_department_model_menu" sequence="10"  parent="qis_internal_helpdesk_configuration" action="qis_internal_helpdesk_department_model_act_window"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="qis_internal_helpdesk_sla_model_form_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.sla_model.form</field>
+            <field name="model">qis_internal_helpdesk.sla_model</field>
+            <field name="arch" type="xml">
+                <form string="Service Level Agreement">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Service Level Agreement"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="customer"/>
+                                <field name="resolution_time"/>
+                            </group>
+                            <group>
+                                <field name="response_time"/>
+                                <field name="priority"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                         <notebook>
+                            <page string="Tickets" >
+                                <field name="ticket_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="title"/>
+                                        <field name="priority" decoration-muted="priority=='low'" decoration-info="priority=='medium'" decoration-warning="priority=='high'" decoration-danger="priority=='urgent'" widget="badge"/>
+                                        <field name="assigned_id"/>
+                                        <field name="department"/>
+                                        <field name="status" decoration-info="status=='open'" decoration-warning="status=='in_progress'" decoration-success="status=='resolved'" decoration-muted="status=='closed'"  widget="badge"/>
+                                        <field name="category"/>
+                                        <field name="customer"/>
+                                        <field name="requester_name"/>
+                                        <field name="requester_email" optional="hide"/>
+                                        <field name="requester_phone" optional="hide"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_sla_model_list_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.sla_model.list</field>
+            <field name="model">qis_internal_helpdesk.sla_model</field>
+            <field name="arch" type="xml">
+                <list string="Service Level Agreement"  sample="1">
+                    <field name="name"/>
+                    <field name="customer"/>
+                    <field name="response_time"/>
+                    <field name="resolution_time"/>
+                    <field name="priority"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_sla_model_search_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.sla_model.search</field>
+            <field name="model">qis_internal_helpdesk.sla_model</field>
+            <field name="arch" type="xml">
+                <search string="Service Level Agreement">
+                    <field name="name"/>
+                    <field name="customer"/>
+                    <field name="response_time"/>
+                    <field name="resolution_time"/>
+                    <field name="priority"/>
+                    <field name="active"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Customer" name="customer" context="{'group_by':'customer'}"/>
+                        <filter string="Priority" name="priority" context="{'group_by':'priority'}"/>
+                        <filter string="active" name="active"  context="{'group_by':'active'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_sla_model_act_window" model="ir.actions.act_window">
+            <field name="name">Service Level Agreement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qis_internal_helpdesk.sla_model</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Experience effortless management of Service Level Agreement.
+                </p>
+                <p>
+                    Click 'New' to add a new record and streamline your workflow.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Service Level Agreement"  sequence="20"  id="qis_internal_helpdesk_sla_model_menu" parent="qis_internal_helpdesk_root_menu" action="qis_internal_helpdesk_sla_model_act_window"/>
+
+    </data>
+</odoo>

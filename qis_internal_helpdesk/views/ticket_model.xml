@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="qis_internal_helpdesk_ticket_model_form_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.ticket_model.form</field>
+            <field name="model">qis_internal_helpdesk.ticket_model</field>
+            <field name="arch" type="xml">
+                <form string="Tickets">
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="open,in_progress,resolved,closed" nolabel="1" readonly="1" />
+                        <button name="action_in_progress" type="object" string="Start Progress" class="oe_highlight" invisible="status != 'open'" />
+                        <button name="action_resolve" type="object" string="Resolve" class="oe_highlight"  invisible="status != 'in_progress'"/>
+                        <button name="action_close" type="object" string="Close" class="oe_highlight"  invisible="status != 'resolved'"/>
+                        <button name="action_reopen" type="object" string="Reopen" class="btn-primary"  invisible="status != 'closed'"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="title"/>
+                                <field name="customer"/>
+                                <field name="category"/>
+                                <field name="department"/>
+                                <field name="assigned_id"/>
+                                <field name="resolution_time"/>
+                            </group>
+                            <group>
+                                <field name="sla_id"/>
+                                <field name="priority"/>
+                                <field name="requester_name"/>
+                                <field name="requester_email"/>
+                                <field name="requester_phone"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description" name="description">
+                                <field name="description" widget="html" placeholder="Add details about this ticket..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_ticket_model_list_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.ticket_model.list</field>
+            <field name="model">qis_internal_helpdesk.ticket_model</field>
+            <field name="arch" type="xml">
+                <list string="Tickets" sample="1">
+                    <field name="name"/>
+                    <field name="title"/>
+                    <field name="priority" decoration-muted="priority=='low'" decoration-info="priority=='medium'" decoration-warning="priority=='high'" decoration-danger="priority=='urgent'" widget="badge"/>
+                    <field name="assigned_id"/>
+                    <field name="department"/>
+                    <field name="status" decoration-info="status=='open'" decoration-warning="status=='in_progress'" decoration-success="status=='resolved'" decoration-muted="status=='closed'" widget="badge"/>
+                    <field name="category"/>
+                    <field name="customer"/>
+                    <field name="requester_name"/>
+                    <field name="requester_email"/>
+                    <field name="requester_phone"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_ticket_model_search_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.ticket_model.search</field>
+            <field name="model">qis_internal_helpdesk.ticket_model</field>
+            <field name="arch" type="xml">
+                <search string="Tickets">
+                    <field name="name"/>
+                    <field name="title"/>
+                    <field name="assigned_id"/>
+                    <field name="category"/>
+                    <field name="customer"/>
+                    <field name="requester_name"/>
+                    <field name="requester_email"/>
+                    <field name="requester_phone"/>
+
+                    <filter string="Low Priority" name="low_priority" domain="[('priority','=','low')]"/>
+                    <filter string="Medium Priority" name="medium_priority" domain="[('priority','=','medium')]"/>
+                    <filter string="High Priority" name="high_priority" domain="[('priority','=','high')]"/>
+                    <filter string="Urgent Priority" name="urgent_priority" domain="[('priority','=','urgent')]"/>
+
+                    <filter string="Open Tickets" name="open_status" domain="[('status','=','open')]"/>
+                    <filter string="In Progress Tickets" name="in_progress_status" domain="[('status','=','in_progress')]"/>
+                    <filter string="Resolved Tickets" name="resolved_status" domain="[('status','=','resolved')]"/>
+                    <filter string="Closed Tickets" name="closed_status" domain="[('status','=','closed')]"/>
+                    <filter string="Created on" date="create_date" name="create_date"/>
+
+                    <group expand="1" string="Group By">
+                        <filter string="Customer" name="customer" context="{'group_by':'customer'}"/>
+                        <filter string="Priority" name="priority" context="{'group_by':'priority'}"/>
+                        <filter string="Agent" name="assigned_id" context="{'group_by':'assigned_id'}"/>
+                        <filter string="Status" name="status" context="{'group_by':'status'}"/>
+                        <filter string="Requester Name" name="requester_name" context="{'group_by':'requester_name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_ticket_model_act_window" model="ir.actions.act_window">
+            <field name="name">Tickets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qis_internal_helpdesk.ticket_model</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Experience effortless management of Tickets.
+                </p>
+                <p>
+                    Click 'New' to add a new record and streamline your workflow.
+                </p>
+            </field>
+        </record>
+
+
+
+        <menuitem name="Tickets" id="qis_internal_helpdesk_ticket_model_menu" parent="qis_internal_helpdesk_root_menu" sequence="10" action="qis_internal_helpdesk_ticket_model_act_window"/>
+
+    </data>
+</odoo>
