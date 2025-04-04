@@ -16,7 +16,7 @@
                         </div>
                         <group>
                             <group>
-                                <field name="customer"/>
+                                <field name="company_id"/>
                                 <field name="resolution_time"/>
                             </group>
                             <group>
@@ -36,7 +36,7 @@
                                         <field name="department"/>
                                         <field name="status" decoration-info="status=='open'" decoration-warning="status=='in_progress'" decoration-success="status=='resolved'" decoration-muted="status=='closed'"  widget="badge"/>
                                         <field name="category"/>
-                                        <field name="customer"/>
+                                        <field name="company_id"/>
                                         <field name="requester_name"/>
                                         <field name="requester_email" optional="hide"/>
                                         <field name="requester_phone" optional="hide"/>
@@ -56,7 +56,7 @@
             <field name="arch" type="xml">
                 <list string="Service Level Agreement"  sample="1">
                     <field name="name"/>
-                    <field name="customer"/>
+                    <field name="company_id"/>
                     <field name="response_time"/>
                     <field name="resolution_time"/>
                     <field name="priority"/>
@@ -71,13 +71,13 @@
             <field name="arch" type="xml">
                 <search string="Service Level Agreement">
                     <field name="name"/>
-                    <field name="customer"/>
+                    <field name="company_id"/>
                     <field name="response_time"/>
                     <field name="resolution_time"/>
                     <field name="priority"/>
                     <field name="active"/>
                     <group expand="1" string="Group By">
-                        <filter string="Customer" name="customer" context="{'group_by':'customer'}"/>
+                        <filter string="Client" name="company_id" context="{'group_by':'company_id'}"/>
                         <filter string="Priority" name="priority" context="{'group_by':'priority'}"/>
                         <filter string="active" name="active"  context="{'group_by':'active'}"/>
                     </group>
@@ -100,7 +100,7 @@
             </field>
         </record>
 
-        <menuitem name="Service Level Agreement"  sequence="20"  id="qis_internal_helpdesk_sla_model_menu" parent="qis_internal_helpdesk_root_menu" action="qis_internal_helpdesk_sla_model_act_window"/>
+        <menuitem name="Service Level Agreement"  sequence="20"  id="qis_internal_helpdesk_sla_model_menu" parent="qis_internal_helpdesk_root_menu" action="qis_internal_helpdesk_sla_model_act_window" groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user"/>
 
     </data>
 </odoo>

@@ -12,6 +12,7 @@
     'depends': ['base','mail','contacts'],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'data/data.xml',
         'views/menu.xml',
         'views/ticket_model.xml',

@@ -8,7 +8,7 @@ class ServiceLevelAgreementModel(models.Model):
 
 
     name = fields.Char(string='SLA Name', required=True)
-    customer = fields.Many2one('res.partner', string='Customer', required=True)
+    company_id = fields.Many2one('res.company',string='Client',required=True,default=lambda self: self.env.company)
     response_time = fields.Float(string='Response Time (Hours)', help='Maximum time allowed to respond to a ticket')
     resolution_time = fields.Float(string='Resolution Time (Hours)', help='Maximum time allowed to resolve a ticket')
     priority = fields.Selection([

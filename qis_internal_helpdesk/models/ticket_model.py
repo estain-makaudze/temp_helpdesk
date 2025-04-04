@@ -23,8 +23,7 @@ class TicketModel(models.Model):
         ('closed', 'Closed')
     ], string='Status', default='open', required=True)
     category = fields.Many2one('qis_internal_helpdesk.category_model', string='Category', required=True)
-
-    customer = fields.Many2one('res.partner', string='Customer', required=True)
+    company_id = fields.Many2one('res.company',string='Client',required=True,default=lambda self: self.env.company)
     sla_id = fields.Many2one('qis_internal_helpdesk.sla_model', string='SLA', required=True)
     requester_name = fields.Char(string='Requester Name', required=True)
     requester_email = fields.Char(string='Requester Email', required=True)

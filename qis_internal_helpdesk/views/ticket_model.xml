@@ -24,7 +24,7 @@
                         <group>
                             <group>
                                 <field name="title"/>
-                                <field name="customer"/>
+                                <field name="company_id" groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user"/>
                                 <field name="category"/>
                                 <field name="department"/>
                                 <field name="assigned_id"/>
@@ -57,11 +57,11 @@
                     <field name="name"/>
                     <field name="title"/>
                     <field name="priority" decoration-muted="priority=='low'" decoration-info="priority=='medium'" decoration-warning="priority=='high'" decoration-danger="priority=='urgent'" widget="badge"/>
-                    <field name="assigned_id"/>
+                    <field name="assigned_id" widget="many2one_avatar_user"/>
                     <field name="department"/>
                     <field name="status" decoration-info="status=='open'" decoration-warning="status=='in_progress'" decoration-success="status=='resolved'" decoration-muted="status=='closed'" widget="badge"/>
                     <field name="category"/>
-                    <field name="customer"/>
+                    <field name="company_id" widget="many2one_avatar" groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user"/>
                     <field name="requester_name"/>
                     <field name="requester_email"/>
                     <field name="requester_phone"/>
@@ -78,7 +78,7 @@
                     <field name="title"/>
                     <field name="assigned_id"/>
                     <field name="category"/>
-                    <field name="customer"/>
+                    <field name="company_id"/>
                     <field name="requester_name"/>
                     <field name="requester_email"/>
                     <field name="requester_phone"/>
@@ -95,7 +95,7 @@
                     <filter string="Created on" date="create_date" name="create_date"/>
 
                     <group expand="1" string="Group By">
-                        <filter string="Customer" name="customer" context="{'group_by':'customer'}"/>
+                        <filter string="Client" name="company_id" context="{'group_by':'company_id'}"/>
                         <filter string="Priority" name="priority" context="{'group_by':'priority'}"/>
                         <filter string="Agent" name="assigned_id" context="{'group_by':'assigned_id'}"/>
                         <filter string="Status" name="status" context="{'group_by':'status'}"/>
@@ -120,9 +120,26 @@
             </field>
         </record>
 
+        <record id="qis_internal_helpdesk_my_ticket_model_act_window" model="ir.actions.act_window">
+            <field name="name">My Tickets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qis_internal_helpdesk.ticket_model</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('assigned_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Experience effortless management of Tickets.
+                </p>
+                <p>
+                    Click 'New' to add a new record and streamline your workflow.
+                </p>
+            </field>
+        </record>
+
 
 
         <menuitem name="Tickets" id="qis_internal_helpdesk_ticket_model_menu" parent="qis_internal_helpdesk_root_menu" sequence="10" action="qis_internal_helpdesk_ticket_model_act_window"/>
+        <menuitem name="My Tickets" id="qis_internal_helpdesk_my_ticket_model_menu" parent="qis_internal_helpdesk_root_menu" sequence="9" action="qis_internal_helpdesk_my_ticket_model_act_window" groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user"/>
 
     </data>
 </odoo>

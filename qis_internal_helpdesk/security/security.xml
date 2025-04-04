@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="qis_internal_helpdesk_group">
+            <field name="name">Helpdesk Access</field>
+            <field name="description">QIS Helpdesk User Rights</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record model="res.groups" id="qis_internal_helpdesk_internal_user">
+            <field name="name">Internal User</field>
+             <field name="category_id" ref="qis_internal_helpdesk.qis_internal_helpdesk_group"/>
+        </record>
+
+        <record model="res.groups" id="qis_internal_helpdesk_client_user">
+            <field name="name">Client User</field>
+             <field name="category_id" ref="qis_internal_helpdesk.qis_internal_helpdesk_group"/>
+        </record>
+
+    </data>
+</odoo>
