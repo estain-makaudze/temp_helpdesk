@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <menuitem name="Helpdesk" id="qis_internal_helpdesk_root_menu"  groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user,qis_internal_helpdesk.qis_internal_helpdesk_internal_user"/>
+        <menuitem name="Helpdesk" id="qis_internal_helpdesk_root_menu"  groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user,qis_internal_helpdesk.qis_internal_helpdesk_client_user"/>
         <menuitem name="Configuration" id="qis_internal_helpdesk_configuration" parent="qis_internal_helpdesk_root_menu" sequence="30" groups="qis_internal_helpdesk.qis_internal_helpdesk_internal_user" />
     </data>
 </odoo>
