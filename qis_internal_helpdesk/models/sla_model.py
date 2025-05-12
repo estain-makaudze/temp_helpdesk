@@ -18,4 +18,5 @@ class ServiceLevelAgreementModel(models.Model):
         ('urgent', 'Urgent')
     ], string='Priority', required=True)
     active = fields.Boolean(string='Active', default=True)
+    ticket_type = fields.Boolean(string='Active', default=True)
     ticket_ids = fields.One2many('qis_internal_helpdesk.ticket_model', 'sla_id', string='Tickets')

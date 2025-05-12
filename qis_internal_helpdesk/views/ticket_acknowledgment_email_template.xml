@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="email_template_helpdesk_ticket_acknowledgment" model="mail.template">
+        <field name="name">Helpdesk Ticket Acknowledgment</field>
+        <field name="model_id" ref='qis_internal_helpdesk.model_qis_internal_helpdesk_ticket_model'/>
+        <field name="auto_delete" eval="True"/>
+        <field name="email_from">{{object.company_id.email}}</field>
+        <field name="email_to">{{object.requester_email }}</field>
+        <field name="subject">Ticket Received - {{object.title}}</field>
+        <field name="body_html">
+            <![CDATA[
+        <div style="padding: 20px; font-family: 'Helvetica', 'Arial', sans-serif; font-size: 14px; color: #333;">
+            <h2 style="color: #1155cc;">Ticket Received - Thank You!</h2>
+            <p>Hello <t t-out="object.requester_name.name"/></p>
+
+            <p>We have successfully received your support ticket. Thank you for reaching out to us!</p>
+
+            <p><strong>Ticket Details:</strong></p>
+            <ul>
+                <li><strong>Ticket No:</strong> <t t-out="object.name"/></li>
+                <li><strong>Title:</strong> <t t-out="object.title"/></li>
+                <li><strong>Description:</strong><t t-out="object.description"/></li>
+            </ul>
+
+            <p>Our support team is reviewing your request and will get back to you shortly.</p>
+
+            <p style="margin-top: 20px;">Best regards,<br/>
+            <strong><t t-out="object.company_id.name"/></strong></p>
+
+            <hr style="margin-top: 30px;"/>
+            <small style="color: #777;">This is an automated message to confirm we received your support ticket.</small>
+        </div>
+        ]]>
+        </field>
+    </record>
+    </data>
+</odoo>

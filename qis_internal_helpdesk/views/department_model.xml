@@ -26,7 +26,7 @@
             </field>
         </record>
 
-        <menuitem name="Department" id="qis_internal_helpdesk_department_model_menu" sequence="10"  parent="qis_internal_helpdesk_configuration" action="qis_internal_helpdesk_department_model_act_window"/>
+        <menuitem name="Department" id="qis_internal_helpdesk_department_model_menu" sequence="20"  parent="qis_internal_helpdesk_configuration" action="qis_internal_helpdesk_department_model_act_window"/>
 
     </data>
 </odoo>

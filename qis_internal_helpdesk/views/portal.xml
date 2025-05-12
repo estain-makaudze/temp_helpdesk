@@ -1,0 +1,66 @@
+<!-- views/portal_ticket_templates.xml -->
+<odoo>
+    <template id="portal_ticket_submit" name="Submit Helpdesk Ticket">
+        <t t-call="website.layout">
+            <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+                <div class=" p-5" style="max-width: 900px; width: 100%; border-radius: 20px;">
+                    <h2 class="text-center text-primary mb-4">Submit a Helpdesk Ticket</h2>
+                    <form action="/my/helpdesk/submit/submit" method="post" class="needs-validation">
+                        <input type="hidden" name="csrf_token" class="form-control" t-att-value="request.csrf_token()"/>
+
+                        <div class="mb-3">
+                            <label class="form-label">Title<span class="text-danger">*</span></label>
+                            <input type="text" name="title" class="form-control"  required="required"/>
+                            <div class="invalid-feedback">Please provide a title.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description<span class="text-danger">*</span></label>
+                            <textarea name="description" class="form-control" rows="4"  required="required"></textarea>
+                            <div class="invalid-feedback">Please provide a description.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="requester_name" class="form-control"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email<span class="text-danger">*</span></label>
+                            <input type="email" name="requester_email" class="form-control"  required="required"/>
+                            <div class="invalid-feedback">Please provide a valid email.</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Phone</label>
+                            <input type="text" name="requester_phone" class="form-control"/>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Ticket</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="portal_ticket_thank_you" name="Ticket Submitted">
+            <t t-call="website.layout">
+                <div class="container d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+                    <div class="card shadow p-5" style="max-width: 600px; width: 100%; border-radius: 20px;">
+                        <div class="text-center">
+                            <h2 class="text-success">Thank You!</h2>
+                            <p class="lead mt-3">Your ticket has been submitted successfully.</p>
+                            <div class="alert alert-info mt-4">
+                                <h5><strong>Ticket Title:</strong> <t t-esc="ticket.title"/></h5>
+                            </div>
+                            <a href="/" class="btn btn-primary mt-3">Return to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+</odoo>

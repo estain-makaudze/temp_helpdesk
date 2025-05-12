@@ -9,7 +9,7 @@
     'website': "https://www.qis.com",
     'category': 'Helpdesk',
     'version': '18.1',
-    'depends': ['base','mail','contacts'],
+    'depends': ['base','mail','contacts','website'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
@@ -19,6 +19,11 @@
         'views/department_model.xml',
         'views/category_model.xml',
         'views/sla_model.xml',
+        'views/portal.xml',
+        'views/clients_contacts.xml',
+        'views/ticket_acknowledgment_email_template.xml',
+        'views/ticket_state_changed_email_template.xml',
+        'views/ticket_assigned_email_template.xml',
     ],
     'license': 'OPL-1',
 }

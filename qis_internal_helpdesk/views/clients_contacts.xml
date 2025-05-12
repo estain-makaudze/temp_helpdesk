@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="qis_internal_helpdesk_clients_contacts_form_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.clients_contacts.form</field>
+            <field name="model">qis_internal_helpdesk.clients_contacts</field>
+            <field name="arch" type="xml">
+                <form string="Clients Contacts">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="email"/>
+                            </group>
+                            <group>
+                                <field name="phone"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_clients_contacts_list_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.clients_contacts.list</field>
+            <field name="model">qis_internal_helpdesk.clients_contacts</field>
+            <field name="arch" type="xml">
+                <list string="Clients Contacts">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="company_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_clients_contacts_search_view" model="ir.ui.view">
+            <field name="name">qis_internal_helpdesk.clients_contacts.search</field>
+            <field name="model">qis_internal_helpdesk.clients_contacts</field>
+            <field name="arch" type="xml">
+                <search string="Clients Contacts">
+                     <field name="name"/>
+                    <field name="email"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Company" name="company_id" domain="[]" context="{'group_by':'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="qis_internal_helpdesk_clients_contacts_act_window" model="ir.actions.act_window">
+            <field name="name">Clients Contacts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qis_internal_helpdesk.clients_contacts</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Experience effortless management of Clients Contacts.
+                </p>
+                <p>
+                    Click 'New' to add a new record and streamline your workflow.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Clients Contacts" id="qis_internal_helpdesk_clients_contacts_menu" parent="qis_internal_helpdesk_configuration" sequence="10" action="qis_internal_helpdesk_clients_contacts_act_window"/>
+
+    </data>
+</odoo>

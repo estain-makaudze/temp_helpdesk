@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ticket_assigned_email_template" model="mail.template">
+        <field name="name">Helpdesk Ticket Assigned</field>
+        <field name="model_id" ref="qis_internal_helpdesk.model_qis_internal_helpdesk_ticket_model"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="email_from">{{object.company_id.email}}</field>
+        <field name="email_to">{{object.assigned_id.email}}</field>
+        <field name="subject">{{'[New Assignment] Ticket: ' + object.title}}</field>
+        <field name="body_html">
+            <![CDATA[
+                <p>
+                    Hello <t t-out="object.assigned_id.name"/>,
+                    <br/><br/>
+                    A new support ticket has been assigned to you. Please review the details below:
+                    <br/><br/>
+                    <strong>Ticket Details:</strong><br/>
+                    <ul>
+                        <li><strong>Ticket No:</strong> <t t-out="object.name"/></li>
+                        <li><strong>Title:</strong> <t t-out="object.title"/></li>
+                        <li><strong>Status:</strong> <t t-out="object.status"/></li>
+                        <li><strong>Priority:</strong> <t t-out="object.priority"/></li>
+                        <li><strong>Description:</strong> <t t-out="object.description"/></li>
+                    </ul>
+                    <br/>
+                    Please take the necessary actions as per your role and assigned SLA.
+                    <br/><br/>
+                    Regards,<br/>
+                    <t t-out="object.company_id.name"/>
+                </p>
+                <hr/>
+                <small>This is an automated notification regarding your helpdesk assignments.</small>
+            ]]>
+        </field>
+    </record>
+</odoo>

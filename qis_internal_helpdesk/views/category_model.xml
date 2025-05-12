@@ -26,6 +26,6 @@
             </field>
         </record>
 
-        <menuitem name="Categories" id="qis_internal_helpdesk_category_model_menu" parent="qis_internal_helpdesk_configuration" sequence="10" action="qis_internal_helpdesk_category_model_act_window"/>
+        <menuitem name="Categories" id="qis_internal_helpdesk_category_model_menu" parent="qis_internal_helpdesk_configuration" sequence="30" action="qis_internal_helpdesk_category_model_act_window"/>
     </data>
 </odoo>
